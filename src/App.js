@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';   // useRef Refers to the SVG element for exporting
 import './App.css';
 import FoldLineControls from './components/FoldLineControls';
 import SheetPreview from './components/SheetPreview';
@@ -216,7 +216,7 @@ const handleMouseDown = (e) => {   // Lets you drag the canvas with your mouse (
         width={width}
         foldLines={foldLines}
         setFoldLines={setFoldLines}
-        svgRef={svgRef}
+        svgRef={svgRef}     //	Refers to the SVG element for exporting
         zoom={zoom}
         setZoom={setZoom}  // ✅ Pass setZoom
   pan={pan}
