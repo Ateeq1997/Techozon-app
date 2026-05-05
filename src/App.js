@@ -13,7 +13,6 @@ function App() {
     { position: 100, direction: 'inward' },
     { position: 300, direction: 'outward' }
   ]);
-  const [sheetSize, setSheetSize] = useState({ width: 500, height: 300 });
   const [newFold, setNewFold] = useState('');
   const svgRef = useRef(null);
   const [zoom, setZoom] = useState(1); // 1 means no zoom
@@ -158,29 +157,6 @@ const zoomOut = () => {
   setZoom(Math.max(zoom - 0.1, 0.1)); // Prevent zooming out too far
 };
 
-// Handle Pan (Move Canvas)
-const handleMouseDown = (e) => {   // Lets you drag the canvas with your mouse (pan)
-  const startX = e.clientX;
-  const startY = e.clientY;
-
-  const onMouseMove = (moveEvent) => {  //Listens to mouse down, move, and up events.
-    const deltaX = moveEvent.clientX - startX;
-    const deltaY = moveEvent.clientY - startY;
-    setPan((prevPan) => ({
-      x: prevPan.x + deltaX,
-      y: prevPan.y + deltaY,
-    }));
-  };
-
-  const onMouseUp = () => {
-    window.removeEventListener('mousemove', onMouseMove);
-    window.removeEventListener('mouseup', onMouseUp);
-  };
-
-  window.addEventListener('mousemove', onMouseMove);
-  window.addEventListener('mouseup', onMouseUp);
-};
-
   return (
     <div className="container">
       <h1>Sheet Metal Design Tool</h1>
@@ -221,7 +197,6 @@ const handleMouseDown = (e) => {   // Lets you drag the canvas with your mouse (
         setZoom={setZoom}  // ✅ Pass setZoom
   pan={pan}
   setPan={setPan}  // ✅ Pass setPan here
-  onMouseDown={handleMouseDown}
       />
 
 
